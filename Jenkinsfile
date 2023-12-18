@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'giturl'
+                git 'https://github.com/klimd01/magrobota'
                 bat '.\\mvnw clean compile'
             }
         }
