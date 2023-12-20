@@ -35,6 +35,7 @@ public class ConfigProvider {
     //8
 
     //9
+    public static final String TEACHERS_URL = prop.getProperty("url.teachers");
 
     //10
 

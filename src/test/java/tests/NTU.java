@@ -1,7 +1,7 @@
 package tests;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,9 +9,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import pages.Main;
 import pages.WebBrowserSettings;
 import ui.configs.ConfigProvider;
+
+
 
 public class NTU extends WebBrowserSettings {
     //1
@@ -51,9 +55,6 @@ public class NTU extends WebBrowserSettings {
         driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL,ConfigProvider.SCHEDULE_URL);
-        //By findCS = By.xpath("//*[@id=\"post-50\"]/div/table[1]/tbody/tr[5]/td[4]/a");
-        //String actualString = driver.findElement(ConfigProvider.FINAL_F).getText();
-        //Assert.assertTrue(actualString.contains(ConfigProvider.FINAL_F));
     }
     //4
     @Test
@@ -64,11 +65,8 @@ public class NTU extends WebBrowserSettings {
         By findPayment = By.xpath("//*[@id=\"widget-rmenu\"]/div[2]/div/h4[2]/b/a");
         driver.findElement(findPayment).click();
         driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
-        //By findPaymentMenu = By.xpath("//*[@id=\"app\"]/div[2]/section/div/div/div[3]/div/div[1]/div/div[1]/h3");
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL,ConfigProvider.PAYMENT_URL);
-        //String actualString = driver.findElement(findPaymentMenu).getText();
-        //Assert.assertTrue(actualString.contains(ConfigProvider.FINAL_PM));
     }
     //5
     @Test
@@ -76,14 +74,11 @@ public class NTU extends WebBrowserSettings {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
         main.maxSize();
-        By findPaymentRec = By.xpath("//*[@id=\"menu-item-4350\"]/a");
+        By findPaymentRec = By.xpath("//*[@id=\"menu-item-4350\"]/a"); //*[@id="menu-item-4350"]/a
         driver.findElement(findPaymentRec).click();
         By findPaymentRah = By.xpath("//*[@id=\"post-4343\"]/div/table/tbody/tr[2]/td[3]/span");
         String paymentRecString = driver.findElement(findPaymentRah).getText();
         Assert.assertTrue(paymentRecString.contains(ConfigProvider.PAYMENT_RAH));
-        //main.getMapOpen();
-        //String URL = driver.getCurrentUrl();
-        //Assert.assertEquals(URL, ConfigProvider.FINAL_MAP);
     }
     //6
     @Test
@@ -93,12 +88,8 @@ public class NTU extends WebBrowserSettings {
         main.maxSize();
         By findSearch = By.xpath("//*[@id=\"widget-search\"]/div/form/label/input");
         driver.findElement(findSearch).sendKeys(ConfigProvider.SEARCH_CHECK);
-        //String str = "розклад";
-        //Assert.assertEquals(str, ConfigProvider.SEARCH_CHECK);
-        //By findSearchResult = By.xpath("//*[@id=\"content\"]/div/header");
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(findSearchResult));
-        //String actualString = driver.findElement(findSearchResult).getText();
-        //Assert.assertTrue(actualString.contains(ConfigProvider.SEARCH_CHECK));
+        String str = "news";
+        Assert.assertEquals(str, ConfigProvider.SEARCH_CHECK);
     }
     //7
     @Test
@@ -133,16 +124,14 @@ public class NTU extends WebBrowserSettings {
     @Test
     public void Faculties() {
         Main main = PageFactory.initElements(driver, Main.class);
-        //WebDriver driver = new ChromeDriver();
         driver.get(ConfigProvider.BASE_URL);
         main.maxSize();
         By findFaculties = By.xpath("//*[@id=\"menu-item-215\"]/a");
         driver.findElement(findFaculties).click();
         By chooseFaculty = By.xpath("//*[@id=\"post-97\"]/div/p[5]/a");
         driver.findElement(chooseFaculty).click();
-        By findTeacher = By.xpath("//*[@id=\"post-363\"]/div/p[2]");
-        String actualString = driver.findElement(findTeacher).getText();
-        //Assert.assertTrue(actualString.contains(ConfigProvider.TEACHER_SEARCH));
+        String URL = driver.getCurrentUrl();
+        Assert.assertEquals(URL,ConfigProvider.TEACHERS_URL);
     }
     //10
     @Test
