@@ -27,6 +27,7 @@ public class NTU extends WebBrowserSettings {
         main.getLanguageChange();
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL,ConfigProvider.EN_URL);
+        driver.get(ConfigProvider.BASE_URL);
     }
     //2
     @Test
