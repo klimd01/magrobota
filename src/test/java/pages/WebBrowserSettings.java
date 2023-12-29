@@ -20,6 +20,7 @@ public class WebBrowserSettings {
         driver = new ChromeDriver();
         System.out.println("Test start");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
     }
 
     @AfterTest

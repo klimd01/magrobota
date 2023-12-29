@@ -14,12 +14,12 @@ import org.testng.annotations.Test;
 import pages.Main;
 import pages.WebBrowserSettings;
 import ui.configs.ConfigProvider;
-
+import org.testng.annotations.Test;
 
 
 public class NTU extends WebBrowserSettings {
     //1
-    @Test
+    @Test(priority=10)
     public void ChangeLanguage() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
@@ -30,7 +30,7 @@ public class NTU extends WebBrowserSettings {
         driver.get(ConfigProvider.BASE_URL);
     }
     //2
-    @Test
+    @Test(priority=2)
     public void BaseInformation() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
@@ -44,7 +44,7 @@ public class NTU extends WebBrowserSettings {
         //Assert.assertTrue(actualString.contains(ConfigProvider.UNI_ADDRESS));
     }
     //3
-    @Test
+    @Test(priority=3)
     public void Schedule() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
@@ -58,7 +58,7 @@ public class NTU extends WebBrowserSettings {
         Assert.assertEquals(URL,ConfigProvider.SCHEDULE_URL);
     }
     //4
-    @Test
+    @Test(priority=4)
     public void Payment() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
@@ -70,19 +70,19 @@ public class NTU extends WebBrowserSettings {
         Assert.assertEquals(URL,ConfigProvider.PAYMENT_URL);
     }
     //5
-    @Test
+    @Test(priority=5)
     public void PaymentRec() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
         main.maxSize();
-        By findPaymentRec = By.xpath("//*[@id=\"menu-item-4350\"]/a"); //*[@id="menu-item-4350"]/a
+        By findPaymentRec = By.xpath("//*[@id=\"menu-item-4350\"]/a");
         driver.findElement(findPaymentRec).click();
         By findPaymentRah = By.xpath("//*[@id=\"post-4343\"]/div/table/tbody/tr[2]/td[3]/span");
         String paymentRecString = driver.findElement(findPaymentRah).getText();
         Assert.assertTrue(paymentRecString.contains(ConfigProvider.PAYMENT_RAH));
     }
     //6
-    @Test
+    @Test(priority=6)
     public void Search() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
@@ -93,7 +93,7 @@ public class NTU extends WebBrowserSettings {
         Assert.assertEquals(str, ConfigProvider.SEARCH_CHECK);
     }
     //7
-    @Test
+    @Test(priority=7)
     public void Img() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
@@ -106,7 +106,7 @@ public class NTU extends WebBrowserSettings {
         Assert.assertEquals(w,ConfigProvider.FINAL_WIDTH);
     }
     //8
-    @Test
+    @Test(priority=8)
     public void restyp() {
         Main main = PageFactory.initElements(driver, Main.class);
         //WebDriver driver = new ChromeDriver();
@@ -122,7 +122,7 @@ public class NTU extends WebBrowserSettings {
         //Assert.assertTrue(e.equals(ConfigProvider.SPECIALTY_SEARCH));
     }
     //9
-    @Test
+    @Test(priority=9)
     public void Faculties() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
@@ -135,7 +135,7 @@ public class NTU extends WebBrowserSettings {
         Assert.assertEquals(URL,ConfigProvider.TEACHERS_URL);
     }
     //10
-    @Test
+    @Test(priority=1)
     public void Specialties() {
         Main main = PageFactory.initElements(driver, Main.class);
         //WebDriver driver = new ChromeDriver();
