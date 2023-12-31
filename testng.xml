@@ -1,18 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "SimpleTest suite name">
     <test name = "SimpleTest test name">
 
         <classes>
-            <!--            <class name = "org.example.uitests.WaitersTests"/>-->
-            <class name = "tests.NTU"/>
-            <!--            <class name = "ua.ithillel.testng.SeleniumTest"/>-->
-            <!--            <class name = "ua.ithillel.testng.GroupTest"/>-->
+<!--            <class name = "tests.UniversalLinkTests"/>-->
+            <class name="tests.NTU"/>
         </classes>
 
-
     </test>
-
-
 </suite>
