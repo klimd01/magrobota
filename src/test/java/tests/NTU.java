@@ -1,7 +1,6 @@
 package tests;
 
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +17,6 @@ import pages.WebBrowserSettings;
 import ui.configs.ConfigProvider;
 import org.testng.annotations.Test;
 import ui.configs.ConfigTestLink;
-
 import java.io.File;
 
 
@@ -173,10 +171,10 @@ public class NTU extends WebBrowserSettings {
         WebElement webElementLinkOnPage = driver.findElement(linkOnPage);
         String hrefLinkOnPage = webElementLinkOnPage.getAttribute("href");
         softAssert.assertEquals(hrefLinkOnPage, configTestLink.assert_link_on_page);
-//        By textLinkOnPage = By.xpath(ConfigTestLink.text_link_on_page);
-//        WebElement webElementTextLinkOnPage = driver.findElement(textLinkOnPage);
-//        String testTextLinkOnPage = webElementLinkOnPage.getText();
-//        softAssert.assertEquals(testTextLinkOnPage, ConfigTestLink.assert_text_link_on_page);
+        By textLinkOnPage = By.xpath(ConfigTestLink.text_link_on_page);
+        WebElement webElementTextLinkOnPage = driver.findElement(textLinkOnPage);
+        String testTextLinkOnPage = webElementLinkOnPage.getText();
+        softAssert.assertEquals(testTextLinkOnPage, ConfigTestLink.assert_text_link_on_page);
         softAssert.assertAll();
     }
 
