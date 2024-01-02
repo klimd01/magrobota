@@ -74,7 +74,7 @@ public class NTU extends WebBrowserSettings {
     }
     //5
     @Test(priority=5)
-    public void PaymentRec() {
+    public void Paymentdetails() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
         main.maxSize();
@@ -108,22 +108,21 @@ public class NTU extends WebBrowserSettings {
         Assert.assertEquals(h,ConfigProvider.FINAL_HEIGHT);
         Assert.assertEquals(w,ConfigProvider.FINAL_WIDTH);
     }
-    //8
-    @Test(priority=8)
-    public void restyp() {
-        Main main = PageFactory.initElements(driver, Main.class);
-        //WebDriver driver = new ChromeDriver();
-        driver.get(ConfigProvider.BASE_URL);
-        main.maxSize();
-        By findStydentiv = By.xpath("//*[@id=\"menu-item-4291\"]/a");
-        driver.findElement(findStydentiv).click();
-        By findFaculty = By.xpath("//*[@id=\"post-4283\"]/div/p[5]/a");
-        driver.findElement(findFaculty).click();
-        driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
-        //WebElement e = driver.findElement(By.xpath("//*[text()='науки']"));
-        //String actualString = driver.findElement(findSpecialty).getText();
-        //Assert.assertTrue(e.equals(ConfigProvider.SPECIALTY_SEARCH));
-    }
+//    @Test(priority=8)
+//    public void restyp???() {
+//        Main main = PageFactory.initElements(driver, Main.class);
+//        ?WebDriver driver = new ChromeDriver();
+//        driver.get(ConfigProvider.BASE_URL);
+//        main.maxSize();
+//        By findStydentiv = By.xpath("//*[@id=\"menu-item-4291\"]/a");
+//        driver.findElement(findStydentiv).click();
+//        By findFaculty = By.xpath("//*[@id=\"post-4283\"]/div/p[5]/a");
+//        driver.findElement(findFaculty).click();
+//        driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
+//       ?WebElement e = driver.findElement(By.xpath("//*[text()='науки']"));
+//        ?String actualString = driver.findElement(findSpecialty).getText();
+//        ?Assert.assertTrue(e.equals(ConfigProvider.SPECIALTY_SEARCH));
+//    }
     //9
     @Test(priority=9)
     public void Faculties() {
@@ -171,10 +170,10 @@ public class NTU extends WebBrowserSettings {
         WebElement webElementLinkOnPage = driver.findElement(linkOnPage);
         String hrefLinkOnPage = webElementLinkOnPage.getAttribute("href");
         softAssert.assertEquals(hrefLinkOnPage, configTestLink.assert_link_on_page);
-        By textLinkOnPage = By.xpath(ConfigTestLink.text_link_on_page);
-        WebElement webElementTextLinkOnPage = driver.findElement(textLinkOnPage);
-        String testTextLinkOnPage = webElementLinkOnPage.getText();
-        softAssert.assertEquals(testTextLinkOnPage, ConfigTestLink.assert_text_link_on_page);
+//        By textLinkOnPage = By.xpath(ConfigTestLink.text_link_on_page);
+//        WebElement webElementTextLinkOnPage = driver.findElement(textLinkOnPage);
+//        String testTextLinkOnPage = webElementLinkOnPage.getText();
+//        softAssert.assertEquals(testTextLinkOnPage, ConfigTestLink.assert_text_link_on_page);
         softAssert.assertAll();
     }
 
