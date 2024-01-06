@@ -2,6 +2,7 @@ package tests;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +17,10 @@ import pages.Main;
 import pages.WebBrowserSettings;
 import ui.configs.ConfigProvider;
 import org.testng.annotations.Test;
+import ui.configs.ConfigTestImg;
 import ui.configs.ConfigTestLink;
+import ui.configs.ConfigTestSearch;
+
 import java.io.File;
 
 
@@ -34,7 +38,7 @@ public class NTU extends WebBrowserSettings {
     }
     //2
     @Test(priority=2)
-    public void BaseInformation() {
+    public void ContactInformation() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
         main.maxSize();
@@ -84,30 +88,7 @@ public class NTU extends WebBrowserSettings {
         String paymentRecString = driver.findElement(findPaymentRah).getText();
         Assert.assertTrue(paymentRecString.contains(ConfigProvider.PAYMENT_RAH));
     }
-    //6
-    @Test(priority=6)
-    public void Search() {
-        Main main = PageFactory.initElements(driver, Main.class);
-        driver.get(ConfigProvider.BASE_URL);
-        main.maxSize();
-        By findSearch = By.xpath("//*[@id=\"widget-search\"]/div/form/label/input");
-        driver.findElement(findSearch).sendKeys(ConfigProvider.SEARCH_CHECK);
-        String str = "news";
-        Assert.assertEquals(str, ConfigProvider.SEARCH_CHECK);
-    }
-    //7
-    @Test(priority=7)
-    public void Img() {
-        Main main = PageFactory.initElements(driver, Main.class);
-        driver.get(ConfigProvider.BASE_URL);
-        main.maxSize();
-        int width=driver.findElement(By.xpath("/html/body/div[3]/div/div/div/div/img")).getSize().getWidth();
-        int height=driver.findElement(By.xpath("/html/body/div[3]/div/div/div/div/img")).getSize().getHeight();
-        String w=Integer.toString(width);
-        String h=Integer.toString(height);
-        Assert.assertEquals(h,ConfigProvider.FINAL_HEIGHT);
-        Assert.assertEquals(w,ConfigProvider.FINAL_WIDTH);
-    }
+
 //    @Test(priority=8)
 //    public void restyp???() {
 //        Main main = PageFactory.initElements(driver, Main.class);
@@ -177,6 +158,59 @@ public class NTU extends WebBrowserSettings {
         softAssert.assertAll();
     }
 
+    @Test(dataProvider = "data-imgs")
+    public void UniversalImgTest(String fileName) {
+        Main main = PageFactory.initElements(driver, Main.class);
+        driver.get(ConfigProvider.BASE_URL);
+        main.maxSize();
+        ConfigTestImg configTestImg = new ConfigTestImg(fileName);
+        By linkToPage = By.xpath(ConfigTestImg.url_link_to_page);
+        driver.findElement(linkToPage).click();
+        SoftAssert softAssert = new SoftAssert();
+        By imgOnPage = By.xpath(ConfigTestImg.img_on_page);
+        WebElement webElementImgOnPage = driver.findElement(imgOnPage);
+        int testImgWidthOnPage = webElementImgOnPage.getSize().getWidth();
+        int testImgHeightOnPage = webElementImgOnPage.getSize().getHeight();
+        String w=Integer.toString(testImgWidthOnPage);
+        String h=Integer.toString(testImgHeightOnPage);
+        softAssert.assertEquals(w, ConfigTestImg.assert_img_weight_on_page);
+        softAssert.assertEquals(h, ConfigTestImg.assert_img_height_on_page);
+        softAssert.assertAll();
+    }
+
+    //6
+    @Test(priority=6)
+    public void Search() {
+        Main main = PageFactory.initElements(driver, Main.class);
+        driver.get(ConfigProvider.BASE_URL);
+        main.maxSize();
+        By findSearch = By.xpath("//*[@id=\"widget-search\"]/div/form/label/input");
+        driver.findElement(findSearch).sendKeys(ConfigProvider.SEARCH_CHECK);
+        String str = "news";
+        Assert.assertEquals(str, ConfigProvider.SEARCH_CHECK);
+    }
+
+    @Test(dataProvider = "data-searches")
+    public void UniversalSearchTest(String fileName) {
+        Main main = PageFactory.initElements(driver, Main.class);
+        driver.get(ConfigProvider.BASE_URL);
+        main.maxSize();
+        ConfigTestSearch configTestSearch = new ConfigTestSearch(fileName);
+        By linkToPage = By.xpath(ConfigTestSearch.url_link_to_page);
+        driver.findElement(linkToPage).click();
+        SoftAssert softAssert = new SoftAssert();
+        By searchOnPage = By.xpath(ConfigTestSearch.search_on_page);
+        WebElement webElementSearchOnPage = driver.findElement(searchOnPage);
+        webElementSearchOnPage.sendKeys(ConfigTestSearch.word_on_page);
+        webElementSearchOnPage.sendKeys(Keys.ENTER);
+        By nothingOnPage = By.xpath(ConfigTestSearch.nothing_on_page);
+        WebElement webElementEmptyOnPage = driver.findElement(nothingOnPage);
+        String testNothingOnPage = webElementEmptyOnPage.getText();
+        softAssert.assertNotEquals(testNothingOnPage, ConfigTestSearch.assert_search_on_page);
+        softAssert.assertEquals(ConfigTestSearch.word_on_page, ConfigTestSearch.assert_search_on_page);
+        softAssert.assertAll();
+    }
+
     @DataProvider(name = "data-links")
     public Object[][] dataLinkProvider(){
         String path = "src/main/resources/link_tests";
@@ -192,4 +226,37 @@ public class NTU extends WebBrowserSettings {
         }
         return arrFilesName;
     }
+
+    @DataProvider(name = "data-imgs")
+    public Object[][] dataImgProvider(){
+        String path = "src/main/resources/img_tests";
+        File dir = new File(path);
+        String dirName = dir.getName();
+        File[] arrFiles = dir.listFiles();
+        String[][] arrFilesName = new String[arrFiles.length][1];
+        int i = 0;
+        for (File file : arrFiles)
+        {
+            arrFilesName[i][0] = dirName + "/" + file.getName();
+            i++;
+        }
+        return arrFilesName;
+    }
+
+    @DataProvider(name = "data-searches")
+    public Object[][] dataSearchProvider(){
+        String path = "src/main/resources/search_tests";
+        File dir = new File(path);
+        String dirName = dir.getName();
+        File[] arrFiles = dir.listFiles();
+        String[][] arrFilesName = new String[arrFiles.length][1];
+        int i = 0;
+        for (File file : arrFiles)
+        {
+            arrFilesName[i][0] = dirName + "/" + file.getName();
+            i++;
+        }
+        return arrFilesName;
+    }
+
 }
