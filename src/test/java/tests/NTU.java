@@ -28,7 +28,7 @@ import java.util.NoSuchElementException;
 
 
 public class NTU extends WebBrowserSettings {
-    //1
+
     @Test(priority=10)
     public void ChangeLanguage() {
         Main main = PageFactory.initElements(driver, Main.class);
@@ -39,7 +39,7 @@ public class NTU extends WebBrowserSettings {
         Assert.assertEquals(URL,ConfigProvider.EN_URL);
         driver.get(ConfigProvider.BASE_URL);
     }
-    //2
+
     @Test(priority=2)
     public void ContactInformation() {
         Main main = PageFactory.initElements(driver, Main.class);
@@ -53,7 +53,7 @@ public class NTU extends WebBrowserSettings {
         //String actualString = driver.findElement(findAddress).getText();
         //Assert.assertTrue(actualString.contains(ConfigProvider.UNI_ADDRESS));
     }
-    //3
+
     @Test(priority=3)
     public void Schedule() {
         Main main = PageFactory.initElements(driver, Main.class);
@@ -67,7 +67,7 @@ public class NTU extends WebBrowserSettings {
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL,ConfigProvider.SCHEDULE_URL);
     }
-    //4
+
     @Test(priority=4)
     public void Payment() {
         Main main = PageFactory.initElements(driver, Main.class);
@@ -79,17 +79,17 @@ public class NTU extends WebBrowserSettings {
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL,ConfigProvider.PAYMENT_URL);
     }
-    //5
+
     @Test(priority=5)
     public void Paymentdetails() {
         Main main = PageFactory.initElements(driver, Main.class);
         driver.get(ConfigProvider.BASE_URL);
         main.maxSize();
-        By findPaymentRec = By.xpath("//*[@id=\"menu-item-4350\"]/a");
-        driver.findElement(findPaymentRec).click();
-        By findPaymentRah = By.xpath("//*[@id=\"post-4343\"]/div/table/tbody/tr[2]/td[3]/span");
-        String paymentRecString = driver.findElement(findPaymentRah).getText();
-        Assert.assertTrue(paymentRecString.contains(ConfigProvider.PAYMENT_RAH));
+        By findPaymentDetailPage = By.xpath("//*[@id=\"menu-item-4350\"]/a");
+        driver.findElement(findPaymentDetailPage).click();
+        By findPaymentdetail = By.xpath("//*[@id=\"post-4343\"]/div/table/tbody/tr[2]/td[3]/span");
+        String paymentRecString = driver.findElement(findPaymentdetail).getText();
+        Assert.assertTrue(paymentRecString.contains(ConfigProvider.PAYMENT_DETAILS));
     }
 
 //    @Test(priority=8)
@@ -108,7 +108,7 @@ public class NTU extends WebBrowserSettings {
 //        ?Assert.assertTrue(e.equals(ConfigProvider.SPECIALTY_SEARCH));
 //    }
 
-    //9
+
     @Test(priority=9)
     public void Faculties() {
         Main main = PageFactory.initElements(driver, Main.class);
@@ -121,7 +121,7 @@ public class NTU extends WebBrowserSettings {
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL,ConfigProvider.TEACHERS_URL);
     }
-    //10
+
     @Test(priority=1)
     public void Specialties() {
         Main main = PageFactory.initElements(driver, Main.class);
