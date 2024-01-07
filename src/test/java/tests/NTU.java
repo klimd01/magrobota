@@ -21,7 +21,10 @@ import ui.configs.ConfigTestImg;
 import ui.configs.ConfigTestLink;
 import ui.configs.ConfigTestSearch;
 
+import java.io.Console;
 import java.io.File;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 
 public class NTU extends WebBrowserSettings {
@@ -104,6 +107,7 @@ public class NTU extends WebBrowserSettings {
 //        ?String actualString = driver.findElement(findSpecialty).getText();
 //        ?Assert.assertTrue(e.equals(ConfigProvider.SPECIALTY_SEARCH));
 //    }
+
     //9
     @Test(priority=9)
     public void Faculties() {
@@ -178,18 +182,6 @@ public class NTU extends WebBrowserSettings {
         softAssert.assertAll();
     }
 
-    //6
-    @Test(priority=6)
-    public void Search() {
-        Main main = PageFactory.initElements(driver, Main.class);
-        driver.get(ConfigProvider.BASE_URL);
-        main.maxSize();
-        By findSearch = By.xpath("//*[@id=\"widget-search\"]/div/form/label/input");
-        driver.findElement(findSearch).sendKeys(ConfigProvider.SEARCH_CHECK);
-        String str = "news";
-        Assert.assertEquals(str, ConfigProvider.SEARCH_CHECK);
-    }
-
     @Test(dataProvider = "data-searches")
     public void UniversalSearchTest(String fileName) {
         Main main = PageFactory.initElements(driver, Main.class);
@@ -203,10 +195,10 @@ public class NTU extends WebBrowserSettings {
         WebElement webElementSearchOnPage = driver.findElement(searchOnPage);
         webElementSearchOnPage.sendKeys(ConfigTestSearch.word_on_page);
         webElementSearchOnPage.sendKeys(Keys.ENTER);
-        By nothingOnPage = By.xpath(ConfigTestSearch.nothing_on_page);
-        WebElement webElementEmptyOnPage = driver.findElement(nothingOnPage);
-        String testNothingOnPage = webElementEmptyOnPage.getText();
-        softAssert.assertNotEquals(testNothingOnPage, ConfigTestSearch.assert_search_on_page);
+        By searchCheckOnPage = By.xpath(ConfigTestSearch.search_check_on_page);
+        WebElement webElementEmptyOnPage = driver.findElement(searchCheckOnPage);
+        String testSearchCheckOnPage = webElementEmptyOnPage.getText();
+        softAssert.assertEquals(testSearchCheckOnPage, "Ви шукали – "+ConfigTestSearch.assert_search_on_page);
         softAssert.assertEquals(ConfigTestSearch.word_on_page, ConfigTestSearch.assert_search_on_page);
         softAssert.assertAll();
     }

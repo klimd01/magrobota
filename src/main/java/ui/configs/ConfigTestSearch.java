@@ -10,7 +10,7 @@ public class ConfigTestSearch {
     public static String search_on_page;
     public static String assert_search_on_page;
     public static String word_on_page;
-    public static String nothing_on_page;
+    public static String search_check_on_page;
 
 
     public ConfigTestSearch(String configPath) {
@@ -20,7 +20,7 @@ public class ConfigTestSearch {
         search_on_page = prop.getProperty("search.on.page");
         assert_search_on_page = prop.getProperty("assert.search.on.page");
         word_on_page = prop.getProperty("word.on.page");
-        nothing_on_page = prop.getProperty("nothing.on.page");
+        search_check_on_page = prop.getProperty("search.check.on.page");
 
 
     }
