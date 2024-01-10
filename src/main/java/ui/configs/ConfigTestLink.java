@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigTestLink {
-//    private static final String CONFIG_PATH = "link_tests/config_01.properties";
 
     private static Properties prop;
 

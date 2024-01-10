@@ -1,14 +1,9 @@
 package tests;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -16,15 +11,12 @@ import org.testng.asserts.SoftAssert;
 import pages.Main;
 import pages.WebBrowserSettings;
 import ui.configs.ConfigProvider;
-import org.testng.annotations.Test;
 import ui.configs.ConfigTestImg;
 import ui.configs.ConfigTestLink;
 import ui.configs.ConfigTestSearch;
-
-import java.io.Console;
 import java.io.File;
-import java.util.List;
-import java.util.NoSuchElementException;
+
+
 
 
 public class NTU extends WebBrowserSettings {
@@ -92,23 +84,6 @@ public class NTU extends WebBrowserSettings {
         Assert.assertTrue(paymentRecString.contains(ConfigProvider.PAYMENT_DETAILS));
     }
 
-//    @Test(priority=8)
-//    public void restyp???() {
-//        Main main = PageFactory.initElements(driver, Main.class);
-//        ?WebDriver driver = new ChromeDriver();
-//        driver.get(ConfigProvider.BASE_URL);
-//        main.maxSize();
-//        By findStydentiv = By.xpath("//*[@id=\"menu-item-4291\"]/a");
-//        driver.findElement(findStydentiv).click();
-//        By findFaculty = By.xpath("//*[@id=\"post-4283\"]/div/p[5]/a");
-//        driver.findElement(findFaculty).click();
-//        driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
-//       ?WebElement e = driver.findElement(By.xpath("//*[text()='науки']"));
-//        ?String actualString = driver.findElement(findSpecialty).getText();
-//        ?Assert.assertTrue(e.equals(ConfigProvider.SPECIALTY_SEARCH));
-//    }
-
-
     @Test(priority=9)
     public void Faculties() {
         Main main = PageFactory.initElements(driver, Main.class);
@@ -125,7 +100,6 @@ public class NTU extends WebBrowserSettings {
     @Test(priority=1)
     public void Specialties() {
         Main main = PageFactory.initElements(driver, Main.class);
-        //WebDriver driver = new ChromeDriver();
         driver.get(ConfigProvider.BASE_URL);
         main.maxSize();
         By findSpecialties = By.xpath("//*[@id=\"menu-item-231\"]/a");
