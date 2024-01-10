@@ -17,8 +17,6 @@ import ui.configs.ConfigTestSearch;
 import java.io.File;
 
 
-
-
 public class NTU extends WebBrowserSettings {
 
     @Test(priority=10)
