@@ -38,10 +38,6 @@ public class NTU extends WebBrowserSettings {
         By findPhoneNumber = By.xpath("/html/body/footer/div/div/div/address");
         String phonenumberString = driver.findElement(findPhoneNumber).getText();
         Assert.assertTrue(phonenumberString.contains(ConfigProvider.UNI_PHONENUMBER));
-        //Assert.assertTrue(phonenumberString.contentEquals(ConfigProvider.UNI_PHONENUMBER));
-        //By findAddress = By.xpath("/html/body/footer/div/div/div/address");
-        //String actualString = driver.findElement(findAddress).getText();
-        //Assert.assertTrue(actualString.contains(ConfigProvider.UNI_ADDRESS));
     }
 
     @Test(priority=3)
@@ -107,11 +103,8 @@ public class NTU extends WebBrowserSettings {
         By findpr = By.xpath("//*[@id=\"post-176\"]/div/p[100]/strong/a");
         driver.findElement(findpr).click();
         driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
-        //By chooseFaculty = By.xpath("//*[@id=\"post-97\"]/div/p[5]/a");
-        //driver.findElement(chooseFaculty).click();
-        //By findTeacher = By.xpath("//*[@id=\"post-363\"]/div/p[2]");
-        //String actualString = driver.findElement(findTeacher).getText();
-        //Assert.assertTrue(actualString.contains(ConfigProvider.TEACHER_SEARCH));
+        String URL = driver.getCurrentUrl();
+        Assert.assertEquals(URL,ConfigProvider.PR_URL);
     }
 
     @Test(dataProvider = "data-links")

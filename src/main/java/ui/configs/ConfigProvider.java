@@ -22,6 +22,8 @@ public class ConfigProvider {
 
     public static final String TEACHERS_URL = prop.getProperty("url.teachers");
 
+    public static final String PR_URL = prop.getProperty("url.pr");
+
     private static Properties initProperties() {
         Properties properties = new Properties();
         try {
